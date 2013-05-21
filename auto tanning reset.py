@@ -25,4 +25,5 @@ while True:
             text_file.close()
             import time
             time.sleep(1)
-
+    import time
+    time.sleep(1)
