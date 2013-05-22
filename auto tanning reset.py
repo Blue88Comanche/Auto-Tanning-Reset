@@ -17,13 +17,14 @@ while True:
     print now_time
     print now_date
     print 'running'
-    if minute is 00:
-        if second is 00:
-            print "reset"
-            text_file = open("tanning reset log.txt", "a")
-            text_file.write("Reset tanning" + ' - ' + str(now_time) + " - " + str(now_date) + '\n')
-            text_file.close()
-            import time
-            time.sleep(1)
+    if hour is 00:
+        if minute is 00:
+            if second is 00:
+                print "reset"
+                text_file = open("tanning reset log.txt", "a")
+                text_file.write("Reset tanning" + ' - ' + str(now_time) + " - " + str(now_date) + '\n')
+                text_file.close()
+                import time
+                time.sleep(1)
     import time
     time.sleep(1)
