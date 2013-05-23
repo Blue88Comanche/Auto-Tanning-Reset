@@ -3,6 +3,10 @@
 #Beta version
 ###
 import os
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(12, GPIO.OUT)
+GPIO.output(12, GPIO.HIGH)
 while True:
     from datetime import datetime
     now = datetime.now()
@@ -21,10 +25,12 @@ while True:
         if minute is 00:
             if second is 00:
                 print "reset"
+                GPIO.output(12, GPIO.LOW)
                 text_file = open("tanning reset log.txt", "a")
                 text_file.write("Reset tanning" + ' - ' + str(now_time) + " - " + str(now_date) + '\n')
                 text_file.close()
                 import time
                 time.sleep(1)
+                GPIO.output(12, GPIO.HIGH)
     import time
     time.sleep(1)
