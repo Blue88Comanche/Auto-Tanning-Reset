@@ -1,12 +1,12 @@
 #Jeffrey Enfinger
 #auto tanning reset
-#Beta version
+#Version 1
 ###
 import os
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(12, GPIO.OUT)
 GPIO.setup(11, GPIO.IN)
+GPIO.setup(12, GPIO.OUT)
 GPIO.output(12, GPIO.HIGH)
 while True:
     from datetime import datetime
@@ -25,17 +25,19 @@ while True:
     if hour is 00:
         if minute is 00:
             if second is 00:
-                print "reset"
-                GPIO.output(12, GPIO.LOW)
-                text_file = open("tanning reset log.txt", "a")
-                text_file.write("Reset tanning" + ' - ' + str(now_time) + " - " + str(now_date) + '\n')
-                text_file.close()
-                import time
-                time.sleep(1)
-                GPIO.output(12, GPIO.HIGH)
+                 print "reset"
+                 GPIO.output(12, GPIO.LOW)
+                 text_file = open("tanning reset log.txt", "a")
+                 text_file.write("Auto Reset tanning" + ' - ' + str(now_time) + " - " + str(now_date) + '\n')
+                 text_file.close()
+                 import time
+                 time.sleep(5)
+                 GPIO.output(12, GPIO.HIGH)
 #####  Manual reset  #####
     input = GPIO.input(11)
-    if input:
+    prev_input = 0
+    if ((not prev_input) and input):
+	print "manual Reset"
         from datetime import datetime
         now = datetime.now()
         year = now.year
@@ -56,4 +58,4 @@ while True:
         GPIO.output(12, GPIO.HIGH)
 #####  check time  #####
     import time
-    time.sleep(0.5)
+    time.sleep(0.25)
